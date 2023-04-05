@@ -1,0 +1,27 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ restaurant.restaurantName }}</mat-card-title>
+    <mat-card-subtitle>{{ restaurant.companyName }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://st.depositphotos.com/1021014/1886/i/950/depositphotos_18860391-stock-photo-modern-restaurant.jpg"
+    alt="Restaurant Image"
+  />
+  <mat-card-content>
+    <p>{{ restaurant.geolocation.city }}, {{ restaurant.geolocation.country }}</p>
+    <span>{{ restaurant.geolocation.address }}</span>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>
+      <a
+        routerLink="/restaurantdetails/{{ restaurant.id }}"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >
+        EXPLORE
+      </a>
+    </button>
+  </mat-card-actions>
+</mat-card>
