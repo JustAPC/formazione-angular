@@ -1,0 +1,72 @@
+<form class="example-form" [formGroup]="personForm" (ngSubmit)="onSubmit()">
+  <!-- Firstname -->
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input type="text" matInput formControlName="firstname" />
+    <mat-error *ngIf="personForm.controls['firstname'].errors?.['required']">
+      Please enter a First Name
+    </mat-error>
+    <mat-error *ngIf="personForm.controls['firstname'].errors?.['minlength']">
+      Name must be longer than 1 characters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Lastname -->
+  <mat-form-field class="example-full-width">
+    <mat-label>Last Name</mat-label>
+    <input type="text" matInput formControlName="lastname" />
+    <mat-error *ngIf="personForm.controls['firstname'].errors?.['required']">
+      Please enter a Last Name
+    </mat-error>
+    <mat-error *ngIf="personForm.controls['lastname'].errors?.['minlength']">
+      Name must be longer than 1 characters
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Birth date -->
+  <mat-form-field appearance="fill">
+    <mat-label>Birth Date</mat-label>
+    <input matInput [matDatepicker]="picker" [max]="today" formControlName="birthdate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="personForm.controls['birthdate'].errors?.['required']">
+      Please enter a Birth date
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Decease date -->
+  <mat-form-field appearance="fill">
+    <mat-label>Decease Date</mat-label>
+    <input matInput [matDatepicker]="picker2" [min]="today" formControlName="deceasedate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <!-- TAX Code -->
+  <mat-form-field class="example-full-width">
+    <mat-label>TAX Code</mat-label>
+    <input type="text" matInput formControlName="taxcode" pattern="{{ taxcodeValidation }}" />
+    <mat-error *ngIf="personForm.controls['taxcode'].errors?.['required']">
+      Please enter a TAX Code
+    </mat-error>
+    <mat-error *ngIf="personForm.controls['taxcode'].errors?.['pattern']">
+      TAX Code is invalid
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Gender -->
+  <mat-form-field appearance="fill">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender">
+      <mat-option value="M">M</mat-option>
+      <mat-option value="F">F</mat-option>
+    </mat-select>
+    <mat-error *ngIf="personForm.controls['gender'].errors?.['required']">
+      Please select a Gender
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="!personForm.valid">Submit</button>
+</form>
